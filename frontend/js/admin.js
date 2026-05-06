@@ -4,7 +4,7 @@ import {
     uploadImage, deleteImage, getAdminFilters,
     getDrugClasses, createDrugClass, updateDrugClass, deleteDrugClass,
     getActiveIngredients, createActiveIngredient, updateActiveIngredient, deleteActiveIngredient,
-    getBrands, createBrand, updateBrand, deleteBrand
+    getBrands, createBrand, updateBrand, deleteBrand, setLastUpdate
 } from './api.js';
 import { getLang } from './lang.js';
 
@@ -32,6 +32,7 @@ const adminTexts = {
     "Lisää lääkeaine": "Lägg till aktiv substans",
     "Muokkaa lääkeainetta": "Redigera aktiv substans",
     "Lisää": "Lägg till",
+    "Päivitä päivämäärä": "Uppdatera datum",
     // table suffixes
     " v": " år",
     " krt/pv": " ggr/dag",
@@ -47,6 +48,7 @@ const adminTexts = {
     "Haluatko varmasti poistaa lääkeaineluokan?": "Vill du verkligen radera läkemedelsgruppen?",
     "Haluatko varmasti poistaa lääkeaineen?": "Vill du verkligen radera den aktiva substansen?",
     // toasts
+    "Päivämäärä päivitetty": "Datumet har uppdaterats",
     "Tallennettu": "Sparat",
     "Poistettu": "Raderat",
     "Kuva poistettu": "Bilden raderad"
@@ -452,6 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const tableBody = document.querySelector(".panel-table tbody");
     const addBtn = document.querySelector(".panel-header .btn-add");
+    const updateDateBtn = document.getElementById("btn-update-date");
     const addFormWrap = document.getElementById("add-form");
     const cancelBtn = document.querySelector(".btn-cancel");
     const addInhalerForm = document.getElementById("add-inhaler-form");
@@ -520,6 +523,16 @@ document.addEventListener("DOMContentLoaded", () => {
         addFormWrap.style.display = wasHidden ? "" : "none";
         if (wasHidden) {
             addFormWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    });
+
+    updateDateBtn.addEventListener("click", async () => {
+        updateDateBtn.disabled = true;
+        const data = await setLastUpdate();
+        updateDateBtn.disabled = false;
+
+        if (data) {
+            showToast(t("Päivämäärä päivitetty") + ": " + data.date);
         }
     });
 

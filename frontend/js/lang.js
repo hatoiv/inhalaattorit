@@ -54,6 +54,7 @@ var sv = {
     "accessibility.link": "Tillgänglighetsutlåtande",
     "search.placeholder": "Sök efter namn...",
     "velocity-coordination.hint": "Obs! Markera båda alternativen",
+    "date.tracker": "Utbudet av inhalatorer på marknaden har uppdaterats: {date}",
 
     // Admin
     "admin.login-heading": "Logga in",
@@ -63,6 +64,7 @@ var sv = {
     "admin.forgot-pw": "Glömt lösenordet? Kontakta administratören.",
     "admin.panel-heading": "Kontrollpanel",
     "admin.add-inhaler": "+ Lägg till inhalator",
+    "admin.update-date": "Uppdatera datum",
     "admin.logout": "Logga ut",
     "admin.form-heading": "Lägg till ny inhalator",
     "admin.name": "Namn",

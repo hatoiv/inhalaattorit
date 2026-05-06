@@ -200,8 +200,24 @@ main {
     background: #f0f0f0;
 }   
 
+/* Gridview top bar */
+.inhalers-h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+#update-date {
+    margin-top: 0rem;
+    font-size: 0.8rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
 #result-count {
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
+    font-size: 0.8rem;
     font-size: 0.8rem;
     color: #666;
 }

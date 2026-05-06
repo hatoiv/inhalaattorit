@@ -114,6 +114,38 @@ export async function getInhalers() {
     }
 }
 
+// GET /api/inhalers/last-updated - returns latest update date
+export async function getLastUpdated() {
+    try {
+        const res = await fetch("/api/inhalers/last-updated");
+        if (!res.ok) return null;
+        return await res.json();
+    } catch (e) {
+        console.error("Failed to fetch last updated date:", e);
+        return null;
+    }
+}
+
+// PUT /api/admin/set-last-update - updates latest update date
+export async function setLastUpdate() {
+    try {
+        const res = await fetch("/api/admin/set-last-update", {
+            method: "PUT",
+            headers: getAuthHeaders()
+        });
+        if (checkExpiredToken(res)) return null;
+        if (checkRateLimit(res)) return null;
+        if (!res.ok) {
+            alert(t("Muokkaus epäonnistui: ") + await getErrorMsg(res));
+            return null;
+        }
+        return await res.json();
+    } catch (e) {
+        alert(t("Yhteysvirhe muokkauksessa."));
+        return null;
+    }
+}
+
 // fetch inhalers in both languages and merge descriptions into {fi, sv}
 export async function getInhalersBothLangs() {
     try {

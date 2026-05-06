@@ -1,5 +1,5 @@
 import { getFilteredIds } from "./filter.js";
-import { getInhalers, getFilters } from "./api.js";
+import { getInhalers, getFilters, getLastUpdated } from "./api.js";
 import {
   gridID,
   detailID,
@@ -45,6 +45,16 @@ function updateCounter() {
   const counterEl = document.getElementById("result-count");
 
   counterEl.textContent = counterStr;
+}
+
+async function updateLastUpdatedDate() {
+  const dateEl = document.getElementById("update-date");
+  if (!dateEl) return;
+
+  const data = await getLastUpdated();
+  if (!data || !data.date) return;
+
+  dateEl.textContent = dateEl.textContent.replace("{date}", data.date);
 }
 
 function getFilterObject() {
@@ -427,6 +437,7 @@ populateFilters(filters);
 initializeMultiSelectFilters();
 renderInhalerGrid(inhalers);
 updateCounter();
+updateLastUpdatedDate();
 
 // Save scroll position before navigating to detail view
 document.getElementById(gridID).addEventListener("click", (event) => {
