@@ -210,13 +210,15 @@ main {
 
 #update-date {
     margin-top: 0rem;
+    margin-bottom: 0.2rem;
     font-size: 0.8rem;
     font-size: 0.8rem;
     color: #666;
 }
 
 #result-count {
-    margin-top: 0.1rem;
+    margin-top: 0rem;
+    margin-bottom: 0.2rem;
     font-size: 0.8rem;
     font-size: 0.8rem;
     color: #666;
@@ -495,15 +497,37 @@ main {
 }
 
 #return-to-gridview {
-    background: #f0f0f0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: fit-content;
+    background: #fff;
     color: #2c3e50;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
-    padding: 0.6rem 1rem;
+    padding: 0.55rem 0.9rem;
     margin-bottom: 1rem;
     font-weight: 600;
-    border: 1px solid #dce3ea;
+    border: 1px solid #b8c5d1;
     border-radius: 8px;
+    line-height: 1;
+}
+
+#return-to-gridview::before {
+    content: "\2190";
+    font-size: 1.1rem;
+    line-height: 1;
+    transform: translateY(-0.02rem);
+}
+
+#return-to-gridview:hover {
+    background: #eef3f8;
+    border-color: #8fa5b8;
+}
+
+#return-to-gridview:focus-visible {
+    outline: 3px solid #7ba0c4;
+    outline-offset: 3px;
 }
 
 /* Inhaler cards */

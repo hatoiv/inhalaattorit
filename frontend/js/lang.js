@@ -152,7 +152,8 @@ var sv = {
     "detail.colors": "Färger: ",
     "detail.database-link": "Databaslänk",
     "detail.tutorial-link": "Instruktionsvideo",
-    "detail.if-necessary": "Vid behov"
+    "detail.if-necessary": "Vid behov",
+    "detail.back-to-results": "Tillbaka"
 };
 
 var fi = {
@@ -185,6 +186,7 @@ var fi = {
     "detail.database-link": "Tietokanta-linkki",
     "detail.tutorial-link": "Opetusvideo",
     "detail.if-necessary": "Tarvittaessa",
+    "detail.back-to-results": "Takaisin",
     "filter.dosage-suffix": " krt/pv",
     "filter.if-necessary": "Tarvittaessa",
     "filter.speed-good": "Hyvä (>30 l/min)",

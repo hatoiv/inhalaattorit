@@ -5,6 +5,7 @@ import {
   detailID,
   backButtonID,
   resultCountID,
+  updateDateID,
   renderInhalerGrid,
   refreshInhalerCardImageBadges,
   setSelectedPatientAge,
@@ -394,6 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
   backButton.addEventListener("click", () => {
     setElementVisibility(gridID, true);
     setElementVisibility(resultCountID, true);
+    setElementVisibility(updateDateID, true);
     setElementVisibility(backButtonID, false);
     setElementVisibility(detailID, false);
     updateResults();

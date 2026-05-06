@@ -2,6 +2,7 @@ export const gridID = "results-grid";
 export const detailID = "detail-view";
 export const backButtonID = "return-to-gridview";
 export const resultCountID = "result-count";
+export const updateDateID = "update-date";
 import { getLang, getTranslation } from './lang.js';
 
 const missingImg = "img/missing.png";
@@ -61,6 +62,7 @@ export function renderInhalerGrid(data) {
     setElementVisibility(detailID, false);
     setTimeout(() => {
         setElementVisibility(resultCountID, true);
+        setElementVisibility(updateDateID, true);
         setElementVisibility(gridID, true);
     }, 0);
 }
@@ -124,6 +126,7 @@ function renderInhalerDetails(inhaler) {
     setElementVisibility(detailID, true);
     setTimeout(() => {
         setElementVisibility(resultCountID, false);
+        setElementVisibility(updateDateID, false);
         setElementVisibility(gridID, false);    
         document.getElementById(backButtonID).focus();
     }, 0);
