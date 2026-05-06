@@ -4,5 +4,6 @@ const uploads = require("./uploads")
 const activeIngredient = require('./activeIngredient');
 const drugClass = require('./drugClass');
 const brand = require('./brand');
+const newDate = require('./newDate')
 
-module.exports = { inhalers, filters, uploads, activeIngredient, drugClass, brand };
+module.exports = { inhalers, filters, uploads, activeIngredient, drugClass, brand, newDate };

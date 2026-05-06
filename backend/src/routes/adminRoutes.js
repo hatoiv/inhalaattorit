@@ -27,4 +27,6 @@ router.post('/brand', adminController.brand.create);
 router.put('/brand/:id', adminController.brand.edit);
 router.delete('/brand/:id', adminController.brand.delete);
 
+router.put('/set-last-update', adminController.newDate.setNewDate);
+
 module.exports = router;
