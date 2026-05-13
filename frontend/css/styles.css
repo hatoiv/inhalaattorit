@@ -1293,6 +1293,45 @@ footer {
     background: #e8edf2;
 }
 
+#back-to-top-button {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1200;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 20%;
+    border: 1px solid #ccc;
+    background: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    opacity: 0;
+    pointer-events: none;
+
+    font-size: large;
+}
+
+#back-to-top-button.visible{
+    opacity: 0.75;
+    pointer-events: auto;
+}
+
+#back-to-top-button:hover {
+  transform: translateY(-2px);
+}
+
+#back-to-top-button:active {
+  transform: scale(0.95);
+}
+
+
+
 @media (max-width: 600px) {
     .privacy-banner {
         padding: 0.6rem 1rem;
