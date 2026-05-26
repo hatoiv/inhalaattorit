@@ -326,12 +326,12 @@ function getFormData() {
     if (name) data.name = name;
 
     // description as {fi, sv} object
-    const descFi = document.getElementById("add-description-fi").value.trim();
-    const descSv = document.getElementById("add-description-sv").value.trim();
-    if (descFi || descSv) {
+    const descFi = document.getElementById("add-description-fi").value;
+    const descSv = document.getElementById("add-description-sv").value;
+    if (descFi.trim() || descSv.trim()) {
         data.description = {};
-        if (descFi) data.description.fi = descFi;
-        if (descSv) data.description.sv = descSv;
+        if (descFi.trim()) data.description.fi = descFi;
+        if (descSv.trim()) data.description.sv = descSv;
     }
 
     const minAge = document.getElementById("add-min-age").value;
