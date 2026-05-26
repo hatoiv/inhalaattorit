@@ -155,11 +155,11 @@ const insertDesc = (medicine_id, descriptions) => {
     // adds all description languages if already exists overrides the description with new one
     // otherwise create new one
     for (const [language, desc] of Object.entries(descriptions)) {
-        const trimmed = String(desc).trim();
-        if (trimmed === ''){
+        const description = String(desc);
+        if (description.trim() === ''){
             stmtRemoveDesc.run({medicine_id, language});
         } else {
-            stmtDesc.run({medicine_id, language, desc: trimmed});
+            stmtDesc.run({medicine_id, language, desc: description});
         }
     }
 };

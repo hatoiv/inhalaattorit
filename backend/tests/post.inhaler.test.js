@@ -122,12 +122,12 @@ describe("inhalers.create()", () => {
     });
 
 
-    it("should trim descriptions and delete empty ones", () => {
+    it("should preserve description whitespace and delete empty ones", () => {
 
         const item = {
             name: "Trim Test",
             description: {
-                fi: "   Test description   ",
+                fi: "Test description\n\nAnother line",
                 sv: "   "
             }
         };
@@ -139,7 +139,7 @@ describe("inhalers.create()", () => {
         ).all(id);
 
         expect(desc).to.have.lengthOf(1);
-        expect(desc[0].description).to.equal("Test description");
+        expect(desc[0].description).to.equal("Test description\n\nAnother line");
     });
 
 
