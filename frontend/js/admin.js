@@ -7,6 +7,7 @@ import {
     getBrands, createBrand, updateBrand, deleteBrand, setLastUpdate
 } from './api.js';
 import { getLang } from './lang.js';
+import { getDosageLabel } from './dosage.js';
 
 let inhalers = [];
 let editingId = null;
@@ -292,7 +293,7 @@ function buildRow(inhaler) {
         brandName,
         styleNames,
         inhaler.recommended_min_age != null ? inhaler.recommended_min_age + t(" v") : "-",
-        inhaler.times_a_day != null ? inhaler.times_a_day + t(" krt/pv") : "-",
+        inhaler.times_a_day != null ? getDosageLabel(inhaler.times_a_day) : "-",
         purposes.length ? purposes.join(", ") : "-"
     ];
 

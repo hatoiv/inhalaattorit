@@ -4,6 +4,7 @@ export const backButtonID = "return-to-gridview";
 export const resultCountID = "result-count";
 export const updateDateID = "update-date";
 import { getLang, getTranslation } from './lang.js';
+import { getDosageLabel } from './dosage.js';
 
 const missingImg = "img/missing.png";
 const spacerIconImg = "img/tilanjatkeUusi.png";
@@ -338,7 +339,7 @@ function buildDetailInfoSection(inhaler) {
     appendInfoItem(
         ageSection,
         getTranslation("detail.dosage"),
-        inhaler.times_a_day === 0 ? getTranslation("detail.if-necessary") : inhaler.times_a_day + getTranslation("detail.times-day")
+        getDosageLabel(inhaler.times_a_day)
     );
 
     detailInfoSection.appendChild(ageSection);

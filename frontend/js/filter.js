@@ -99,7 +99,15 @@ function matchesFilter(item, key, value) {
         return item[key] <= Number(values[0]);
     }
     if (key === "times_a_day") {
-        return values.some(selectedValue => item[key] === Number(selectedValue));
+        return values.some(selectedValue => {
+            const selectedDosage = Number(selectedValue);
+
+            if (selectedDosage === 2) {
+                return item[key] === 2 || item[key] === 3;
+            }
+
+            return item[key] === selectedDosage;
+        });
     }
 
     // Object with name (inhaler_brand: {id, name})
