@@ -23,6 +23,7 @@ import {
   getSearchDisplayName,
 } from "./search.js";
 import { sortIntakeStylesForDropdown } from "./intake-order.js";
+import { getDosageLabel, getPublicDosageFilterValues } from "./dosage.js";
 
 const nameClearID = "search-name-clear";
 const filterClearID = "search-filter-clear";
@@ -267,14 +268,11 @@ function populateFilters(filters) {
   //const ages = filters.recommended_min_age.slice().sort((a, b) => a - b);
   //addOptions("inhaler-age-select", ages, (v) => v + " v");
 
-  const times = filters.times_a_day.slice().sort((a, b) => a - b);
+  const times = getPublicDosageFilterValues(filters.times_a_day);
   addOptions(
     "inhaler-dosage-select",
     times,
-    (v) =>
-      v === 0
-        ? getTranslation("filter.if-necessary")
-        : `${v}${getTranslation("filter.dosage-suffix")}`,
+    getDosageLabel,
   );
 
   // Boolean: intake speed

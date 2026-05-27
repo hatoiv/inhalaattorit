@@ -79,7 +79,13 @@
                         <input type="number" id="add-rec-age" min="0"/>
 
                         <label for="add-times-day" data-i18n="admin.times-day">Annostelu (kertaa päivässä)</label>
-                        <input type="number" id="add-times-day" min="0"/>
+                        <select id="add-times-day">
+                            <option value="" data-i18n="admin.unknown">Ei tiedossa</option>
+                            <option value="0" data-i18n="dosage.if-necessary">Tarvittaessa</option>
+                            <option value="1" data-i18n="dosage.once-daily">1x/pv</option>
+                            <option value="2" data-i18n="dosage.twice-daily">2x/pv</option>
+                            <option value="3" data-i18n="dosage.once-or-twice-daily">1-2x/pv</option>
+                        </select>
 
                         <label for="add-intake-speed" data-i18n="admin.intake-speed">Sisäänhengitysnopeus</label>
                         <select id="add-intake-speed">
