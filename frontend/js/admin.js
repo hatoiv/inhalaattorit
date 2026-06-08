@@ -4,7 +4,8 @@ import {
     uploadImage, deleteImage, getAdminFilters,
     getDrugClasses, createDrugClass, updateDrugClass, deleteDrugClass,
     getActiveIngredients, createActiveIngredient, updateActiveIngredient, deleteActiveIngredient,
-    getBrands, createBrand, updateBrand, deleteBrand, setLastUpdate
+    getBrands, createBrand, updateBrand, deleteBrand, getLastUpdated, setLastUpdate, updateLogBook,
+    downloadDatabaseBackup
 } from './api.js';
 import { getLang } from './lang.js';
 import { getDosageLabel } from './dosage.js';
@@ -50,6 +51,7 @@ const adminTexts = {
     "Haluatko varmasti poistaa lääkeaineen?": "Vill du verkligen radera den aktiva substansen?",
     // toasts
     "Päivämäärä päivitetty": "Datumet har uppdaterats",
+    "Muutosloki päivitetty": "Ändringsloggen har uppdaterats",
     "Tallennettu": "Sparat",
     "Poistettu": "Raderat",
     "Kuva poistettu": "Bilden raderad"
@@ -456,6 +458,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const tableBody = document.querySelector(".panel-table tbody");
     const addBtn = document.querySelector(".panel-header .btn-add");
     const updateDateBtn = document.getElementById("btn-update-date");
+    const logBookInput = document.getElementById("admin-logbook");
+    const saveLogBookBtn = document.getElementById("btn-save-logbook");
+    const downloadBackupBtn = document.getElementById("btn-download-backup");
     const addFormWrap = document.getElementById("add-form");
     const cancelBtn = document.querySelector(".btn-cancel");
     const addInhalerForm = document.getElementById("add-inhaler-form");
@@ -472,8 +477,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function initPanel() {
         await loadFilterData();
+        await loadLogBook();
         loadInhalers();
         loadManagementData();
+    }
+
+    async function loadLogBook() {
+        if (!logBookInput) return;
+        const data = await getLastUpdated();
+        logBookInput.value = data && typeof data.info === "string" ? data.info : "";
     }
 
     // check if already logged in
@@ -536,6 +548,27 @@ document.addEventListener("DOMContentLoaded", () => {
             showToast(t("Päivämäärä päivitetty") + ": " + data.date);
         }
     });
+
+    if (saveLogBookBtn && logBookInput) {
+        saveLogBookBtn.addEventListener("click", async () => {
+            saveLogBookBtn.disabled = true;
+            const data = await updateLogBook(logBookInput.value);
+            saveLogBookBtn.disabled = false;
+
+            if (data) {
+                logBookInput.value = typeof data.info === "string" ? data.info : "";
+                showToast(t("Muutosloki päivitetty"));
+            }
+        });
+    }
+
+    if (downloadBackupBtn) {
+        downloadBackupBtn.addEventListener("click", async () => {
+            downloadBackupBtn.disabled = true;
+            await downloadDatabaseBackup();
+            downloadBackupBtn.disabled = false;
+        });
+    }
 
     // cancel
     cancelBtn.addEventListener("click", () => {

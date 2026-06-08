@@ -34,7 +34,9 @@ const apiTexts = {
     "Kuvan lataus epäonnistui: ": "Bilduppladdning misslyckades: ",
     "Yhteysvirhe kuvan latauksessa.": "Anslutningsfel vid bilduppladdning.",
     "Kuvan poisto epäonnistui: ": "Radering av bild misslyckades: ",
-    "Yhteysvirhe kuvan poistossa.": "Anslutningsfel vid radering av bild."
+    "Yhteysvirhe kuvan poistossa.": "Anslutningsfel vid radering av bild.",
+    "Varmuuskopion lataus epäonnistui: ": "Nedladdning av säkerhetskopia misslyckades: ",
+    "Yhteysvirhe varmuuskopion latauksessa.": "Anslutningsfel vid nedladdning av säkerhetskopia."
 };
 
 function t(text) {
@@ -143,6 +145,56 @@ export async function setLastUpdate() {
     } catch (e) {
         alert(t("Yhteysvirhe muokkauksessa."));
         return null;
+    }
+}
+
+// PUT /api/admin/update-logbook - updates front page change log text
+export async function updateLogBook(info) {
+    try {
+        const res = await fetch("/api/admin/update-logbook", {
+            method: "PUT",
+            headers: getAuthHeaders(),
+            body: JSON.stringify({ info })
+        });
+        if (checkExpiredToken(res)) return null;
+        if (checkRateLimit(res)) return null;
+        if (!res.ok) {
+            alert(t("Muokkaus epäonnistui: ") + await getErrorMsg(res));
+            return null;
+        }
+        return await res.json();
+    } catch (e) {
+        alert(t("Yhteysvirhe muokkauksessa."));
+        return null;
+    }
+}
+
+// GET /api/admin/backup/download - downloads database backup
+export async function downloadDatabaseBackup() {
+    try {
+        const res = await fetch("/api/admin/backup/download", {
+            headers: getAuthOnly()
+        });
+        if (checkExpiredToken(res)) return false;
+        if (checkRateLimit(res)) return false;
+        if (!res.ok) {
+            alert(t("Varmuuskopion lataus epäonnistui: ") + await getErrorMsg(res));
+            return false;
+        }
+
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "inhalers.db";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        return true;
+    } catch (e) {
+        alert(t("Yhteysvirhe varmuuskopion latauksessa."));
+        return false;
     }
 }
 

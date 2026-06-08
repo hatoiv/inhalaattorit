@@ -17,7 +17,7 @@
         <!-- Navigation and localisation header -->
         <header>
             <div class="header-content">
-                <h1 data-i18n="site.title">Inhalaattorit.fi</h1>
+                <h1 data-i18n="site.title"><a href="/">Inhalaattorit.fi</a></h1>
                 <button class="nav-toggle" aria-label="Avaa valikko">&#9776;</button>
                 <nav>
                     <ul>
@@ -174,7 +174,7 @@
         <!-- Inhaler search -->
         <main class="search-main">
             <!-- Name search -->
-            <section class="search-name">
+            <section id="search-name-section" class="search-name">
                 <h2 id="search-name-heading" data-i18n="search.heading">Hae lääke / inhalaattori nimellä</h2>
                 <div class="search-bar">
                     <input type="search" id="inhaler-name" name="search" placeholder="Hae nimellä..." data-i18n-placeholder="search.placeholder" aria-labelledby="search-name-heading"/>
@@ -247,6 +247,11 @@
             <section class="results">
                 <h2 class="inhalers-h2" data-i18n="results.heading">Inhalaattorit</h2>
                 <p id="update-date" data-i18n="date.tracker">Markkinoilla oleva inhalaattorivalikoima päivitetty: {date}</p>
+                <div id="logbook-popover" class="logbook-popover" hidden>
+                    <span data-i18n="logbook.prompt">Tarkista uusimmat muutokset</span>
+                    <button id="logbook-toggle" class="logbook-toggle" type="button" data-i18n="logbook.toggle" aria-expanded="false" aria-controls="logbook-content">tästä</button>
+                    <div id="logbook-content" class="logbook-content" role="status"></div>
+                </div>
                 <p id="result-count" data-i18n="search.counter">Näytetään {current}/{total}</p>              
                 <button id="return-to-gridview" data-i18n="detail.back-to-results" hidden>Takaisin</button>
                 <section id="results-grid"></section>

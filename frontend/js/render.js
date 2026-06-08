@@ -3,6 +3,8 @@ export const detailID = "detail-view";
 export const backButtonID = "return-to-gridview";
 export const resultCountID = "result-count";
 export const updateDateID = "update-date";
+export const searchNameID = "search-name-section";
+export const logBookID = "logbook-popover";
 import { getLang, getTranslation } from './lang.js';
 import { getDosageLabel } from './dosage.js';
 
@@ -62,6 +64,8 @@ export function renderInhalerGrid(data) {
     setElementVisibility(backButtonID, false);
     setElementVisibility(detailID, false);
     setTimeout(() => {
+        setElementVisibility(searchNameID, true);
+        setElementVisibility(logBookID, hasLogBookContent());
         setElementVisibility(resultCountID, true);
         setElementVisibility(updateDateID, true);
         setElementVisibility(gridID, true);
@@ -76,6 +80,10 @@ export function renderInhalerGrid(data) {
 export function setElementVisibility(elementId, visible) {
     const element = document.getElementById(elementId);
     element.hidden = !visible;
+}
+
+function hasLogBookContent() {
+    return document.getElementById("logbook-content")?.textContent.trim() !== "";
 }
 
 /**
@@ -126,6 +134,8 @@ function renderInhalerDetails(inhaler) {
     setElementVisibility(backButtonID, true);
     setElementVisibility(detailID, true);
     setTimeout(() => {
+        setElementVisibility(searchNameID, false);
+        setElementVisibility(logBookID, false);
         setElementVisibility(resultCountID, false);
         setElementVisibility(updateDateID, false);
         setElementVisibility(gridID, false);    

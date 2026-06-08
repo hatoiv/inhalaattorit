@@ -12,7 +12,7 @@
         <!-- Navigation and localisation header -->
         <header>
             <div class="header-content">
-                <h1 data-i18n="site.title">Inhalaattorit.fi</h1>
+                <h1 data-i18n="site.title"><a href="/">Inhalaattorit.fi</a></h1>
                 <button class="nav-toggle" aria-label="Avaa valikko">&#9776;</button>
                 <nav>
                     <ul>
@@ -58,6 +58,14 @@
                 </div>
 
                 <p class="panel-hint" data-i18n="admin.scroll-hint">Vihje: inhalaattorilistan alapuolelta löydät myös inhalaattorimerkkien, lääkeaineluokkien ja vaikuttavien lääkeaineiden hallinnan.</p>
+
+                <section class="logbook-editor" aria-labelledby="logbook-heading">
+                    <h3 id="logbook-heading" data-i18n="admin.logbook-heading">Viimeisimmät muutokset</h3>
+                    <textarea id="admin-logbook" rows="5" data-i18n-placeholder="admin.logbook-placeholder" placeholder="Kirjoita muutokset tähän..."></textarea>
+                    <div class="logbook-editor-actions">
+                        <button type="button" class="btn-add" id="btn-save-logbook" data-i18n="admin.logbook-save">Tallenna muutokset</button>
+                    </div>
+                </section>
 
                 <!-- Add inhaler form -->
                 <div class="add-form-wrap" id="add-form" style="display: none;">
@@ -253,6 +261,9 @@
                         </form>
                     </div>
                 </div>
+                <section class="admin-backup">
+                    <button type="button" class="btn-add" id="btn-download-backup" data-i18n="admin.backup-download">Lataa tietokannan varmuuskopio</button>
+                </section>
             </div>
         </main>
 
