@@ -5,6 +5,7 @@ import {
   detailID,
   backButtonID,
   searchNameID,
+  logBookID,
   resultCountID,
   updateDateID,
   renderInhalerGrid,
@@ -52,12 +53,38 @@ function updateCounter() {
 
 async function updateLastUpdatedDate() {
   const dateEl = document.getElementById("update-date");
+  const logBookEl = document.getElementById("logbook-popover");
+  const logBookContentEl = document.getElementById("logbook-content");
   if (!dateEl) return;
 
   const data = await getLastUpdated();
   if (!data || !data.date) return;
 
   dateEl.textContent = dateEl.textContent.replace("{date}", data.date);
+
+  if (!logBookEl || !logBookContentEl) return;
+
+  const info = typeof data.info === "string" ? data.info : "";
+  logBookEl.hidden = info.trim() === "";
+  renderFormattedLogBook(logBookContentEl, info);
+}
+
+function renderFormattedLogBook(target, text) {
+  target.replaceChildren();
+
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  parts.forEach((part) => {
+    const isBold = part.startsWith("**") && part.endsWith("**") && part.length > 4;
+
+    if (isBold) {
+      const strong = document.createElement("strong");
+      strong.textContent = part.slice(2, -2);
+      target.appendChild(strong);
+      return;
+    }
+
+    target.appendChild(document.createTextNode(part));
+  });
 }
 
 function getFilterObject() {
@@ -394,6 +421,9 @@ document.addEventListener("DOMContentLoaded", () => {
   backButton.addEventListener("click", () => {
     setElementVisibility(gridID, true);
     setElementVisibility(searchNameID, true);
+    if (document.getElementById("logbook-content")?.textContent.trim()) {
+      setElementVisibility(logBookID, true);
+    }
     setElementVisibility(resultCountID, true);
     setElementVisibility(updateDateID, true);
     setElementVisibility(backButtonID, false);
@@ -407,6 +437,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Retain search results after going back from detail view
     updateResults();
   });
+
+  const logBookToggle = document.getElementById("logbook-toggle");
+  const logBookPopover = document.getElementById("logbook-popover");
+  if (logBookToggle && logBookPopover) {
+    logBookToggle.addEventListener("click", () => {
+      const isOpen = logBookPopover.classList.toggle("open");
+      logBookToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
 
   // Language button
   const langBtn = document.querySelector(".lang-toggle");

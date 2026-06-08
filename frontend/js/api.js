@@ -146,6 +146,27 @@ export async function setLastUpdate() {
     }
 }
 
+// PUT /api/admin/update-logbook - updates front page change log text
+export async function updateLogBook(info) {
+    try {
+        const res = await fetch("/api/admin/update-logbook", {
+            method: "PUT",
+            headers: getAuthHeaders(),
+            body: JSON.stringify({ info })
+        });
+        if (checkExpiredToken(res)) return null;
+        if (checkRateLimit(res)) return null;
+        if (!res.ok) {
+            alert(t("Muokkaus epäonnistui: ") + await getErrorMsg(res));
+            return null;
+        }
+        return await res.json();
+    } catch (e) {
+        alert(t("Yhteysvirhe muokkauksessa."));
+        return null;
+    }
+}
+
 // fetch inhalers in both languages and merge descriptions into {fi, sv}
 export async function getInhalersBothLangs() {
     try {

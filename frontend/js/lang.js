@@ -59,6 +59,8 @@ var sv = {
     "search.placeholder": "Sök efter namn...",
     "velocity-coordination.hint": "Obs! Markera båda alternativen",
     "date.tracker": "Utbudet av inhalatorer på marknaden har uppdaterats: {date}",
+    "logbook.prompt": "Se de senaste ändringarna",
+    "logbook.toggle": "här",
 
     // Admin
     "admin.login-heading": "Logga in",
@@ -123,6 +125,9 @@ var sv = {
     "admin.btn-edit": "Redigera",
     "admin.btn-delete": "Radera",
     "admin.scroll-hint": "Tips: under inhalatorlistan finns även hanteringen av inhalatormärken, läkemedelsgrupper och aktiva substanser.",
+    "admin.logbook-heading": "Senaste ändringarna",
+    "admin.logbook-placeholder": "Skriv ändringarna här...",
+    "admin.logbook-save": "Spara ändringar",
     "admin.ingredient-class-note": "Läkemedelsgrupp (ICS, LABA…) anges per aktiv substans nedan i sektionen \"Aktiva substanser\".",
     "admin.dc-plus-note": "Kombinationsnamn kan skrivas med +-tecknet (t.ex. ICS+LABA, LAMA+LABA).",
 
@@ -212,6 +217,11 @@ var fi = {
     "filters.drug-group-option": "Valitse lääkeaineryhmä",
     "filters.substance-option": "Valitse vaikuttava lääkeaine",
     "filters.color-option": "Valitse väri",
+    "logbook.prompt": "Tarkista uusimmat muutokset",
+    "logbook.toggle": "tästä",
+    "admin.logbook-heading": "Viimeisimmät muutokset",
+    "admin.logbook-placeholder": "Kirjoita muutokset tähän...",
+    "admin.logbook-save": "Tallenna muutokset",
 };
 
 const fiCounter = "Näytetään {current}/{total}";
