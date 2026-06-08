@@ -4,6 +4,7 @@ import {
   gridID,
   detailID,
   backButtonID,
+  searchNameID,
   resultCountID,
   updateDateID,
   renderInhalerGrid,
@@ -392,6 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const backButton = document.getElementById(backButtonID);
   backButton.addEventListener("click", () => {
     setElementVisibility(gridID, true);
+    setElementVisibility(searchNameID, true);
     setElementVisibility(resultCountID, true);
     setElementVisibility(updateDateID, true);
     setElementVisibility(backButtonID, false);
