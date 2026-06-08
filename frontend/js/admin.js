@@ -4,7 +4,8 @@ import {
     uploadImage, deleteImage, getAdminFilters,
     getDrugClasses, createDrugClass, updateDrugClass, deleteDrugClass,
     getActiveIngredients, createActiveIngredient, updateActiveIngredient, deleteActiveIngredient,
-    getBrands, createBrand, updateBrand, deleteBrand, getLastUpdated, setLastUpdate, updateLogBook
+    getBrands, createBrand, updateBrand, deleteBrand, getLastUpdated, setLastUpdate, updateLogBook,
+    downloadDatabaseBackup
 } from './api.js';
 import { getLang } from './lang.js';
 import { getDosageLabel } from './dosage.js';
@@ -459,6 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateDateBtn = document.getElementById("btn-update-date");
     const logBookInput = document.getElementById("admin-logbook");
     const saveLogBookBtn = document.getElementById("btn-save-logbook");
+    const downloadBackupBtn = document.getElementById("btn-download-backup");
     const addFormWrap = document.getElementById("add-form");
     const cancelBtn = document.querySelector(".btn-cancel");
     const addInhalerForm = document.getElementById("add-inhaler-form");
@@ -557,6 +559,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 logBookInput.value = typeof data.info === "string" ? data.info : "";
                 showToast(t("Muutosloki päivitetty"));
             }
+        });
+    }
+
+    if (downloadBackupBtn) {
+        downloadBackupBtn.addEventListener("click", async () => {
+            downloadBackupBtn.disabled = true;
+            await downloadDatabaseBackup();
+            downloadBackupBtn.disabled = false;
         });
     }
 

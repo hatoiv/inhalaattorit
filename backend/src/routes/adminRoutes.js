@@ -30,4 +30,6 @@ router.delete('/brand/:id', adminController.brand.delete);
 router.put('/set-last-update', adminController.logBook.setNewDate);
 router.put('/update-logbook', adminController.logBook.setInfo);
 
+router.get('/backup/download', adminController.backup.download);
+
 module.exports = router;

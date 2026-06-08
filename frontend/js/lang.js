@@ -128,6 +128,7 @@ var sv = {
     "admin.logbook-heading": "Senaste ändringarna",
     "admin.logbook-placeholder": "Skriv ändringarna här...",
     "admin.logbook-save": "Spara ändringar",
+    "admin.backup-download": "Ladda ner databasens säkerhetskopia",
     "admin.ingredient-class-note": "Läkemedelsgrupp (ICS, LABA…) anges per aktiv substans nedan i sektionen \"Aktiva substanser\".",
     "admin.dc-plus-note": "Kombinationsnamn kan skrivas med +-tecknet (t.ex. ICS+LABA, LAMA+LABA).",
 
@@ -222,6 +223,7 @@ var fi = {
     "admin.logbook-heading": "Viimeisimmät muutokset",
     "admin.logbook-placeholder": "Kirjoita muutokset tähän...",
     "admin.logbook-save": "Tallenna muutokset",
+    "admin.backup-download": "Lataa tietokannan varmuuskopio",
 };
 
 const fiCounter = "Näytetään {current}/{total}";
