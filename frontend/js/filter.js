@@ -98,7 +98,7 @@ function matchesFilter(item, key, value) {
     if (key === "recommended_min_age") {
         return item[key] <= Number(values[0]);
     }
-    if (key === "times_a_day") {
+    /* if (key === "times_a_day") {
         return values.some(selectedValue => {
             const selectedDosage = Number(selectedValue);
 
@@ -108,7 +108,7 @@ function matchesFilter(item, key, value) {
 
             return item[key] === selectedDosage;
         });
-    }
+    } */
 
     // Object with name (inhaler_brand: {id, name})
     if (key === "inhaler_brand") {
