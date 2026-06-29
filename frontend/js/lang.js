@@ -135,14 +135,14 @@ var sv = {
     // Card and detail page
     "card.extension-badge": " + Spacer",
 
-    "card.recommended-age": "Rekommenderad åldergräns: ",
+    "card.recommended-age": "Arbetsgruppens rekommenderade åldersgräns: ",
     "card.active-ingredients": "Aktiva substanser:\n",
     "detail.extension-badge": " + Spacer",
     "detail.inhaler": "Inhalator:",
     "detail.form": "Läkemedelsform:",
     "detail.age-dosage": "Ålder och dosering",
     "detail.official-age": "Officiell åldergräns:",
-    "detail.recommended-age": "Rekommenderad åldergräns:",
+    "detail.recommended-age": "Arbetsgruppens rekommenderade åldersgräns:",
     "detail.dosage": "Dosering:",
     "detail.years": " år",
     "detail.times-day": " gånger om dagen",
@@ -168,14 +168,14 @@ var sv = {
 
 var fi = {
     "card.extension-badge": " + Tilanjatke",
-    "card.recommended-age": "Suositeltu ikäraja: ",
+    "card.recommended-age": "Työryhmän suosittama ikäraja: ",
     "card.active-ingredients": "Vaikuttavat lääkeaineet:\n",
     "detail.extension-badge": " + Tilanjatke",
     "detail.inhaler": "Inhalaattori:",
     "detail.form": "Lääkemuoto:",
     "detail.age-dosage": "Ikä ja annostelu",
     "detail.official-age": "Virallinen ikäraja:",
-    "detail.recommended-age": "Suositeltu ikäraja:",
+    "detail.recommended-age": "Työryhmän suosittama ikäraja:",
     "detail.dosage": "Annostelu:",
     "detail.years": " vuotta",
     "detail.times-day": "x päivässä",
