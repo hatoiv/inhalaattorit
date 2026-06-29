@@ -332,7 +332,7 @@ function buildDetailInfoSection(inhaler) {
     // Age and dosage section
     const ageSection = document.createElement("div");
     ageSection.classList.add("detail-info-section");
-    appendSectionHeading(ageSection, getTranslation("detail.age-dosage"));
+    //appendSectionHeading(ageSection, getTranslation("detail.age-dosage"));
 
     appendInfoItem(
         ageSection,
@@ -347,9 +347,9 @@ function buildDetailInfoSection(inhaler) {
     );
 
     appendInfoItem(
-        ageSection,
-        getTranslation("detail.dosage"),
-        getDosageLabel(inhaler.times_a_day)
+        ageSection
+        //getTranslation("detail.dosage"),
+        //getDosageLabel(inhaler.times_a_day)
     );
 
     detailInfoSection.appendChild(ageSection);

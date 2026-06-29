@@ -296,12 +296,12 @@ function populateFilters(filters) {
   //const ages = filters.recommended_min_age.slice().sort((a, b) => a - b);
   //addOptions("inhaler-age-select", ages, (v) => v + " v");
 
-  const times = getPublicDosageFilterValues(filters.times_a_day);
+  /* const times = getPublicDosageFilterValues(filters.times_a_day);
   addOptions(
     "inhaler-dosage-select",
     times,
     getDosageLabel,
-  );
+  ); */
 
   // Boolean: intake speed
   addOptions("inhaler-velocity-select", ["1", "0"], (v) =>
