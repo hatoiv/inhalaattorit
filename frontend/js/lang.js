@@ -12,6 +12,7 @@ var sv = {
     "nav.front-page": "Ingångssida",
     "nav.about": "Om denna webbplats",
     "nav.feedback": "Kontakt",
+    "nav.inhaler-use": "Användning av inhalatorer",
     "nav.admin": "Admin",
     "nav.lang-label": "SV - Byt språk",
     "site.title": "Inhalaattorit.fi",

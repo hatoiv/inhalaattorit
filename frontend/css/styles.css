@@ -785,6 +785,110 @@ main {
     text-decoration: none;
 }
 
+.inhaler-use-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.inhaler-use-list {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.inhaler-use-section {
+    border: 1px solid #cbd5df;
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.inhaler-use-section summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+    padding: 1rem 1.2rem;
+    color: #22303c;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+}
+
+.inhaler-use-section summary::-webkit-details-marker {
+    display: none;
+}
+
+.inhaler-use-section summary::after {
+    content: "+";
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c3e50;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.inhaler-use-section[open] summary {
+    background: #f5f7fa;
+    border-bottom: 1px solid #dce3ea;
+}
+
+.inhaler-use-section[open] summary::after {
+    content: "\2212";
+}
+
+.inhaler-use-section summary:focus-visible {
+    outline: 3px solid #7ba0c4;
+    outline-offset: -3px;
+}
+
+.inhaler-use-content {
+    padding: 0.2rem 1.2rem 1.4rem;
+}
+
+.page-content .inhaler-use-content h3 {
+    margin-top: 1.2rem;
+}
+
+.instruction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.instruction-table th,
+.instruction-table td {
+    padding: 0.75rem 0.85rem;
+    border: 1px solid #dce3ea;
+    color: #444;
+    line-height: 1.55;
+    vertical-align: top;
+}
+
+.instruction-table th {
+    background: #eef3f8;
+    color: #2c3e50;
+    font-weight: 700;
+    text-align: left;
+}
+
+.instruction-table th:first-child,
+.instruction-table td:first-child {
+    width: 5rem;
+    text-align: center;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.instruction-table tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
 /* Disclaimer section: visually distinct but readable */
 .page-content section.disclaimer {
     border-left: 4px solid #aab;
