@@ -791,9 +791,53 @@ main {
     gap: 1.2rem;
 }
 
+.inhaler-use-page > section {
+    margin-bottom: 0;
+}
+
 .inhaler-use-list {
     display: grid;
     gap: 0.8rem;
+}
+
+.inhaler-use-static {
+    margin-bottom: 0.6rem;
+}
+
+.page-content .inhaler-use-static h3 {
+    margin-top: 0.2rem;
+}
+
+.concept-list {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.35fr) 1fr;
+    border: 1px solid #dce3ea;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.concept-list dt,
+.concept-list dd {
+    padding: 0.8rem 0.9rem;
+    border-bottom: 1px solid #dce3ea;
+    color: #444;
+    line-height: 1.55;
+}
+
+.concept-list dt {
+    background: #eef3f8;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.concept-list dd {
+    margin: 0;
+    background: #fff;
+}
+
+.concept-list dt:last-of-type,
+.concept-list dd:last-of-type {
+    border-bottom: none;
 }
 
 .inhaler-use-section {
@@ -1699,6 +1743,14 @@ footer {
 
     .page-content h3 {
         font-size: 1.15rem;
+    }
+
+    .concept-list {
+        grid-template-columns: 1fr;
+    }
+
+    .concept-list dt {
+        border-bottom: none;
     }
 
     #guide-panel {
