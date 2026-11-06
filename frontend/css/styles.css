@@ -1796,3 +1796,56 @@ footer {
         width: 4rem;
     }
 }
+
+/* Patient guide (PDF) buttons on product pages and the inhaler usage page */
+.guide-links {
+    margin-top: 1rem;
+}
+
+/* on the usage page the buttons sit inside .page-content, whose link style would hide the text */
+.page-content .guide-links a.btn-primary {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Patient guide form in the admin panel */
+.guide-form label {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0.6rem 0 0.3rem;
+}
+
+.guide-form input[type="text"],
+.guide-form select {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    background: #fff;
+    font-family: inherit;
+}
+
+.guide-form input[type="file"] {
+    font-size: 0.85rem;
+}
+
+.guide-form .guide-current-file {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin: 0 0 0.4rem;
+    font-size: 0.85rem;
+}
+
+.guide-form .guide-current-file label {
+    display: inline-flex;
+    gap: 0.3rem;
+    align-items: center;
+    margin: 0;
+}
+
+.guide-form .management-form-row {
+    margin-top: 0.8rem;
+}

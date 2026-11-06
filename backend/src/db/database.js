@@ -40,4 +40,7 @@ if (isTest) {
     }
 }
 
+// tables added after launch, created here so they also reach the existing production database
+db.exec(fs.readFileSync(path.join(__dirname, "guides.sql"), "utf-8"));
+
 module.exports = db;

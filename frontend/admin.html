@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <p class="panel-hint" data-i18n="admin.scroll-hint">Vihje: inhalaattorilistan alapuolelta löydät myös inhalaattorimerkkien, lääkeaineluokkien ja vaikuttavien lääkeaineiden hallinnan.</p>
+                <p class="panel-hint" data-i18n="admin.scroll-hint">Vihje: inhalaattorilistan alapuolelta löydät myös inhalaattorimerkkien, lääkeaineluokkien, vaikuttavien lääkeaineiden ja potilasohjeiden hallinnan.</p>
 
                 <section class="logbook-editor" aria-labelledby="logbook-heading">
                     <h3 id="logbook-heading" data-i18n="admin.logbook-heading">Viimeisimmät muutokset</h3>
@@ -147,6 +147,11 @@
 
                         <label for="add-link-tutorial" data-i18n="admin.link-tutorial">Tutoriaali-linkki</label>
                         <input type="url" id="add-link-tutorial" placeholder="https://youtube.com/..."/>
+
+                        <fieldset class="checkbox-group" id="add-guides">
+                            <legend data-i18n="admin.guides">Potilasohjeet (PDF)</legend>
+                            <p class="panel-hint" data-i18n="admin.guides-note">Potilasohjeita lisätään ja muokataan alempana osiossa "Potilasohjeet (PDF)".</p>
+                        </fieldset>
 
                         <label for="add-image" data-i18n="admin.image">Kuva</label>
                         <div class="image-preview" id="image-preview" style="display:none">
@@ -262,6 +267,61 @@
                         </form>
                     </div>
                 </div>
+                <!-- Patient guides -->
+                <div class="management-section" id="guide-section">
+                    <button class="btn-toggle-section" type="button" data-i18n="admin.guides">Potilasohjeet (PDF)</button>
+                    <div class="section-content" style="display:none">
+                        <table class="panel-table management-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="admin.name-primary">Nimi (fi)</th>
+                                    <th data-i18n="admin.name-secondary">Nimi (sv)</th>
+                                    <th data-i18n="admin.guide-category">Ryhmä</th>
+                                    <th data-i18n="admin.guide-files">PDF</th>
+                                    <th data-i18n="admin.guide-used-by">Inhalaattoreita</th>
+                                    <th data-i18n="admin.th-actions">Toiminnot</th>
+                                </tr>
+                            </thead>
+                            <tbody id="guide-tbody"></tbody>
+                        </table>
+                        <form id="guide-form" class="management-form guide-form">
+                            <h4 id="guide-form-heading" data-i18n="admin.guide-add">Lisää potilasohje</h4>
+
+                            <label for="guide-name-fi" data-i18n="admin.guide-name-fi">Nimi (suomi)</label>
+                            <input type="text" id="guide-name-fi" required/>
+
+                            <label for="guide-name-sv" data-i18n="admin.guide-name-sv">Nimi (ruotsi)</label>
+                            <input type="text" id="guide-name-sv" required/>
+
+                            <label for="guide-category" data-i18n="admin.guide-category-label">Ryhmä Inhalaattorien käyttö -sivulla</label>
+                            <select id="guide-category">
+                                <option value="" data-i18n="admin.guide-no-category">Ei näytetä Inhalaattorien käyttö -sivulla</option>
+                            </select>
+
+                            <label for="guide-file-fi" data-i18n="admin.guide-file-fi">PDF (suomi)</label>
+                            <p class="guide-current-file" id="guide-current-fi" style="display:none">
+                                <a target="_blank" rel="noopener" data-i18n="admin.guide-current">Nykyinen PDF</a>
+                                <label><input type="checkbox" id="guide-remove-fi"/> <span data-i18n="admin.guide-remove">Poista PDF</span></label>
+                            </p>
+                            <input type="file" id="guide-file-fi" accept="application/pdf,.pdf"/>
+
+                            <label for="guide-file-sv" data-i18n="admin.guide-file-sv">PDF (ruotsi)</label>
+                            <p class="guide-current-file" id="guide-current-sv" style="display:none">
+                                <a target="_blank" rel="noopener" data-i18n="admin.guide-current">Nykyinen PDF</a>
+                                <label><input type="checkbox" id="guide-remove-sv"/> <span data-i18n="admin.guide-remove">Poista PDF</span></label>
+                            </p>
+                            <input type="file" id="guide-file-sv" accept="application/pdf,.pdf"/>
+
+                            <p class="panel-hint" data-i18n="admin.guide-file-note">Uusi PDF korvaa vanhan kaikilla inhalaattoreilla, joihin ohje on liitetty. Ohje näytetään vain niillä kielillä, joille on ladattu PDF.</p>
+
+                            <div class="management-form-row">
+                                <button type="submit" class="btn-add" id="guide-submit-btn" data-i18n="admin.btn-add">Lisää</button>
+                                <button type="button" class="btn-cancel" id="guide-cancel-btn" style="display:none" data-i18n="admin.cancel">Peruuta</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                 <section class="admin-backup">
                     <button type="button" class="btn-add" id="btn-download-backup" data-i18n="admin.backup-download">Lataa tietokannan varmuuskopio</button>
                 </section>

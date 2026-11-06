@@ -5,14 +5,16 @@ import {
     getDrugClasses, createDrugClass, updateDrugClass, deleteDrugClass,
     getActiveIngredients, createActiveIngredient, updateActiveIngredient, deleteActiveIngredient,
     getBrands, createBrand, updateBrand, deleteBrand, getLastUpdated, setLastUpdate, updateLogBook,
-    downloadDatabaseBackup
+    downloadDatabaseBackup, getAdminGuides, createGuide, updateGuide, deleteGuide
 } from './api.js';
+import { guideCategories } from './guides.js';
 import { getLang } from './lang.js';
 import { getDosageLabel } from './dosage.js';
 
 let inhalers = [];
 let editingId = null;
 let filterData = null;
+let guides = [];
 
 // dynamic text translations for admin panel
 const adminTexts = {
@@ -34,6 +36,13 @@ const adminTexts = {
     "Lisää lääkeaine": "Lägg till aktiv substans",
     "Muokkaa lääkeainetta": "Redigera aktiv substans",
     "Lisää": "Lägg till",
+    "Lisää potilasohje": "Lägg till patientanvisning",
+    "Muokkaa potilasohjetta": "Redigera patientanvisning",
+    "Haluatko varmasti poistaa potilasohjeen?": "Vill du verkligen radera patientanvisningen?",
+    "Potilasohjeella täytyy olla nimi suomeksi ja ruotsiksi.": "Patientanvisningen måste ha ett namn på finska och svenska.",
+    "ei PDF:ää ruotsiksi": "ingen PDF på svenska",
+    "ei PDF:ää suomeksi": "ingen PDF på finska",
+    "ei PDF:ää": "ingen PDF",
     "Päivitä päivämäärä": "Uppdatera datum",
     // table suffixes
     " v": " år",
@@ -372,6 +381,9 @@ function getFormData() {
     const ingredients = getCheckedIds(document.getElementById("add-ingredients"));
     if (ingredients.length) data.active_ingredients = ingredients;
 
+    // always sent, so unticking every guide removes them from the inhaler
+    data.guides = getCheckedIds(document.getElementById("add-guides"));
+
     // links - stringify for SQLite storage
     const linkDb = document.getElementById("add-link-db").value.trim();
     const linkTut = document.getElementById("add-link-tutorial").value.trim();
@@ -446,6 +458,42 @@ function populateForm(inhaler) {
     const links = inhaler.links ? (typeof inhaler.links === "string" ? JSON.parse(inhaler.links) : inhaler.links) : {};
     document.getElementById("add-link-db").value = links.database || "";
     document.getElementById("add-link-tutorial").value = links.tutorial || "";
+
+    // guides: set every checkbox explicitly so ticks from a previously edited inhaler don't remain
+    const guideIds = (inhaler.guides || []).map(g => g.id);
+    document.querySelectorAll('#add-guides input[type="checkbox"]').forEach(cb => {
+        cb.checked = guideIds.includes(Number(cb.value));
+    });
+}
+
+// guide name in the current language, falling back to the other one
+function guideName(guide) {
+    const lang = getLang();
+    const other = lang === "sv" ? "fi" : "sv";
+    return guide[lang].name || guide[other].name || "";
+}
+
+function guideCategoryName(key) {
+    const category = guideCategories.find(c => c.key === key);
+    if (!category) return "-";
+    return getLang() === "sv" ? category.sv : category.fi;
+}
+
+// guide checklist of the inhaler form, keeps the current ticks
+function populateGuideCheckboxes() {
+    const fieldset = document.getElementById("add-guides");
+    const checked = getCheckedIds(fieldset);
+    const items = guides.map(g => {
+        let name = guideName(g);
+        if (!g.fi.url && !g.sv.url) name += " (" + t("ei PDF:ää") + ")";
+        else if (!g.sv.url) name += " (" + t("ei PDF:ää ruotsiksi") + ")";
+        else if (!g.fi.url) name += " (" + t("ei PDF:ää suomeksi") + ")";
+        return { id: g.id, name };
+    });
+    populateCheckboxes(fieldset, items, "guides");
+    fieldset.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = checked.includes(Number(cb.value));
+    });
 }
 
 // Admin page
@@ -1011,6 +1059,144 @@ document.addEventListener("DOMContentLoaded", () => {
 
     brandCancelBtn.addEventListener("click", resetBrandForm);
 
+    // --- Patient guide management ---
+    let editingGuideId = null;
+    const guideTbody = document.getElementById("guide-tbody");
+    const guideForm = document.getElementById("guide-form");
+    const guideHeading = document.getElementById("guide-form-heading");
+    const guideSubmitBtn = document.getElementById("guide-submit-btn");
+    const guideCancelBtn = document.getElementById("guide-cancel-btn");
+    const guideCategorySelect = document.getElementById("guide-category");
+
+    guideCategories.forEach(category => {
+        const opt = document.createElement("option");
+        opt.value = category.key;
+        opt.textContent = getLang() === "sv" ? category.sv : category.fi;
+        guideCategorySelect.appendChild(opt);
+    });
+
+    function buildGuideRow(guide) {
+        // primary column shows current language, secondary shows the other (like active ingredients)
+        const lang = getLang();
+        const primary = lang === "sv" ? guide.sv.name : guide.fi.name;
+        const secondary = lang === "sv" ? guide.fi.name : guide.sv.name;
+        const files = ["fi", "sv"].filter(l => guide[l].url).map(l => l.toUpperCase()).join(", ") || "-";
+        return buildManagementRow(guide.id, [
+            primary,
+            secondary,
+            guideCategoryName(guide.category),
+            files,
+            String(guide.used_by)
+        ]);
+    }
+
+    async function loadGuideList() {
+        guides = await getAdminGuides();
+        guides.sort((a, b) => guideName(a).localeCompare(guideName(b), getLang()));
+        guideTbody.replaceChildren();
+        guides.forEach(g => guideTbody.appendChild(buildGuideRow(g)));
+        populateGuideCheckboxes();
+    }
+
+    function showCurrentFile(lang, url) {
+        const wrap = document.getElementById("guide-current-" + lang);
+        wrap.style.display = url ? "" : "none";
+        wrap.querySelector("a").href = url || "";
+        document.getElementById("guide-remove-" + lang).checked = false;
+    }
+
+    function resetGuideForm() {
+        editingGuideId = null;
+        guideForm.reset();
+        showCurrentFile("fi", null);
+        showCurrentFile("sv", null);
+        guideHeading.textContent = t("Lisää potilasohje");
+        guideSubmitBtn.textContent = t("Lisää");
+        guideCancelBtn.style.display = "none";
+        clearEditingHighlight();
+    }
+
+    guideTbody.addEventListener("click", async (e) => {
+        const row = e.target.closest("tr");
+        if (!row) return;
+        const id = Number(row.dataset.id);
+        const guide = guides.find(g => g.id === id);
+        if (!guide) return;
+
+        if (e.target.classList.contains("btn-edit")) {
+            editingGuideId = id;
+            guideForm.reset();
+            document.getElementById("guide-name-fi").value = guide.fi.name;
+            document.getElementById("guide-name-sv").value = guide.sv.name;
+            guideCategorySelect.value = guide.category || "";
+            showCurrentFile("fi", guide.fi.url);
+            showCurrentFile("sv", guide.sv.url);
+            guideHeading.textContent = t("Muokkaa potilasohjetta") + ": " + guideName(guide);
+            guideSubmitBtn.textContent = t("Tallenna");
+            guideCancelBtn.style.display = "";
+            highlightEditingRow(row);
+            guideForm.scrollIntoView({ behavior: "smooth", block: "center" });
+            document.getElementById("guide-name-fi").focus();
+        }
+
+        if (e.target.classList.contains("btn-delete")) {
+            if (guide.used_by > 0) {
+                showInUseAlert(
+                    guideName(guide),
+                    guide.used_by,
+                    "Potilasohjetta \"{name}\" ei voi poistaa, koska se on liitetty {count} inhalaattoriin. Poista ohje ensin inhalaattoreilta.",
+                    "Patientanvisningen \"{name}\" kan inte raderas eftersom den är kopplad till {count} inhalatorer. Ta först bort anvisningen från inhalatorerna."
+                );
+                return;
+            }
+            if (!confirm(t("Haluatko varmasti poistaa potilasohjeen?"))) return;
+            const ok = await deleteGuide(id);
+            if (ok) {
+                if (editingGuideId === id) resetGuideForm();
+                await loadGuideList();
+                showToast(t("Poistettu"));
+            }
+        }
+    });
+
+    guideForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const nameFi = document.getElementById("guide-name-fi").value.trim();
+        const nameSv = document.getElementById("guide-name-sv").value.trim();
+        if (!nameFi || !nameSv) {
+            alert(t("Potilasohjeella täytyy olla nimi suomeksi ja ruotsiksi."));
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("name_fi", nameFi);
+        formData.append("name_sv", nameSv);
+        formData.append("category", guideCategorySelect.value);
+        for (const lang of ["fi", "sv"]) {
+            const file = document.getElementById("guide-file-" + lang).files[0];
+            if (file) formData.append("file_" + lang, file);
+            if (editingGuideId && document.getElementById("guide-remove-" + lang).checked) {
+                formData.append("remove_" + lang, "1");
+            }
+        }
+
+        guideSubmitBtn.disabled = true;
+        const ok = editingGuideId
+            ? await updateGuide(editingGuideId, formData)
+            : !!(await createGuide(formData));
+        guideSubmitBtn.disabled = false;
+
+        if (ok) {
+            await loadGuideList();
+            // the inhaler list holds guide names used by the edit form
+            await loadInhalers();
+            showToast(t("Tallennettu"));
+            resetGuideForm();
+        }
+    });
+
+    guideCancelBtn.addEventListener("click", resetGuideForm);
+
     // Esc closes whichever edit form is currently open
     document.addEventListener("keydown", (e) => {
         if (e.key !== "Escape") return;
@@ -1021,6 +1207,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (editingDcId) { resetDcForm(); return; }
         if (editingAiId) { resetAiForm(); return; }
         if (editingBrandId) { resetBrandForm(); return; }
+        if (editingGuideId) { resetGuideForm(); return; }
     });
 
     // reload page on language change so all dynamic content updates
@@ -1035,6 +1222,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await loadBrandList();
         await loadDrugClassList();
         await loadIngredientList();
+        await loadGuideList();
     }
 
 });

@@ -36,7 +36,11 @@ const apiTexts = {
     "Kuvan poisto epäonnistui: ": "Radering av bild misslyckades: ",
     "Yhteysvirhe kuvan poistossa.": "Anslutningsfel vid radering av bild.",
     "Varmuuskopion lataus epäonnistui: ": "Nedladdning av säkerhetskopia misslyckades: ",
-    "Yhteysvirhe varmuuskopion latauksessa.": "Anslutningsfel vid nedladdning av säkerhetskopia."
+    "Yhteysvirhe varmuuskopion latauksessa.": "Anslutningsfel vid nedladdning av säkerhetskopia.",
+    "Potilasohjeen tallennus epäonnistui: ": "Sparandet av patientanvisningen misslyckades: ",
+    "Yhteysvirhe potilasohjeen tallennuksessa.": "Anslutningsfel vid sparande av patientanvisningen.",
+    "Potilasohjeen poisto epäonnistui: ": "Raderingen av patientanvisningen misslyckades: ",
+    "Yhteysvirhe potilasohjeen poistossa.": "Anslutningsfel vid radering av patientanvisningen."
 };
 
 function t(text) {
@@ -508,6 +512,85 @@ export async function deleteBrand(id) {
         return true;
     } catch (e) {
         alert(t("Yhteysvirhe inhalaattorin poistossa."));
+        return false;
+    }
+}
+
+// GET /api/admin/guides - all patient guides, with how many inhalers use each
+export async function getAdminGuides() {
+    try {
+        const res = await fetch("/api/admin/guides", {
+            headers: getAuthOnly()
+        });
+        if (checkExpiredToken(res)) return [];
+        if (checkRateLimit(res)) return [];
+        if (!res.ok) return [];
+        return await res.json();
+    } catch (e) {
+        console.error("Failed to fetch guides:", e);
+        return [];
+    }
+}
+
+// POST /api/admin/guides - formData: name_fi, name_sv, category, file_fi, file_sv. Returns id or null
+export async function createGuide(formData) {
+    try {
+        const res = await fetch("/api/admin/guides", {
+            method: "POST",
+            headers: getAuthOnly(),
+            body: formData
+        });
+        if (checkExpiredToken(res)) return null;
+        if (checkRateLimit(res)) return null;
+        if (!res.ok) {
+            alert(t("Potilasohjeen tallennus epäonnistui: ") + await getErrorMsg(res));
+            return null;
+        }
+        const body = await res.json();
+        return body.id || true;
+    } catch (e) {
+        alert(t("Yhteysvirhe potilasohjeen tallennuksessa."));
+        return null;
+    }
+}
+
+// PUT /api/admin/guides/:id - same fields as create (all optional) plus remove_fi / remove_sv
+export async function updateGuide(id, formData) {
+    try {
+        const res = await fetch("/api/admin/guides/" + id, {
+            method: "PUT",
+            headers: getAuthOnly(),
+            body: formData
+        });
+        if (checkExpiredToken(res)) return false;
+        if (checkRateLimit(res)) return false;
+        if (!res.ok) {
+            alert(t("Potilasohjeen tallennus epäonnistui: ") + await getErrorMsg(res));
+            return false;
+        }
+        return true;
+    } catch (e) {
+        alert(t("Yhteysvirhe potilasohjeen tallennuksessa."));
+        return false;
+    }
+}
+
+// DELETE /api/admin/guides/:id
+export async function deleteGuide(id) {
+    try {
+        const res = await fetch("/api/admin/guides/" + id, {
+            method: "DELETE",
+            headers: getAuthOnly()
+        });
+        if (checkExpiredToken(res)) return false;
+        if (checkRateLimit(res)) return false;
+        if (!res.ok) {
+            alert(t("Potilasohjeen poisto epäonnistui: ") + await getErrorMsg(res));
+            return false;
+        }
+        return true;
+    } catch (e) {
+        alert(t("Yhteysvirhe potilasohjeen poistossa."));
         return false;
     }
 }
