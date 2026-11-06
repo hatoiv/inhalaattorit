@@ -1,4 +1,5 @@
 const inhalersModel = require('../models/inhalersModel');
+const guidesModel = require('../models/admin/guides');
 const fs = require("fs");
 const path = require("path");
 const metaPath = path.join(__dirname, "../../data/metaDate.json");
@@ -25,6 +26,17 @@ class InhalersController {
             const lang = getLanguage(req.query.lang);
             const data = inhalersModel.getUsedFilters(lang);
 
+            res.json(data);
+
+        } catch (e) {
+            res.status(500).json({message: e.message});
+        }
+    };
+
+    // all patient guides with names and PDF urls in both languages (for the inhaler usage page)
+    static getGuides = (req, res) => {
+        try {
+            const data = guidesModel.getAll().map(({ used_by, ...guide }) => guide);
             res.json(data);
 
         } catch (e) {

@@ -7,6 +7,7 @@ export const searchNameID = "search-name-section";
 export const logBookID = "logbook-popover";
 import { getLang, getTranslation } from './lang.js';
 import { getDosageLabel } from './dosage.js';
+import { buildGuideButtons } from './guides.js';
 
 const missingImg = "img/missing.png";
 const spacerIconImg = "img/tilanjatkeUusi.png";
@@ -425,6 +426,13 @@ function buildDetailInfoSection(inhaler) {
         }
 
         detailInfoSection.appendChild(linksSection);
+    }
+
+    // Patient guide (PDF) buttons, only guides that have a PDF in the current language
+    const guideButtons = buildGuideButtons(inhaler.guides || [], getLang());
+    if (guideButtons) {
+        guideButtons.classList.add("detail-info-section");
+        detailInfoSection.appendChild(guideButtons);
     }
 
     // Color badge

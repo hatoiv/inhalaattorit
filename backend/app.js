@@ -27,6 +27,9 @@ app.use('/api/inhalers', limiterBasic, inhalersRoutes);
 app.use('/api/admin/login', limiterAdminLogin, authRoutes);
 app.use('/api/admin', limiterBasic, authMiddleware, adminRoutes);
 app.use('/uploads', express.static(path.join(__dirname, './data/uploads')));
+app.use('/guides', express.static(path.join(__dirname, './data/guides'), {
+    setHeaders: (res) => res.setHeader('X-Content-Type-Options', 'nosniff')
+}));
 
 // redirect requests to unused routes to index
 app.all('/*splat', (req, res) => {res.redirect('/')});

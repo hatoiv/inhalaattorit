@@ -2,6 +2,7 @@ const express = require('express');
 const adminController = require('../controllers/admin/adminController');
 const router = express.Router();
 const upload = require("../middleware/uploadMiddleware");
+const guideUpload = require("../middleware/guideUploadMiddleware");
 
 router.post('/inhalers', adminController.inhalers.create);
 router.put('/inhalers/:id', adminController.inhalers.edit);
@@ -26,6 +27,11 @@ router.get('/brand', adminController.brand.get);
 router.post('/brand', adminController.brand.create);
 router.put('/brand/:id', adminController.brand.edit);
 router.delete('/brand/:id', adminController.brand.delete);
+
+router.get('/guides', adminController.guides.get);
+router.post('/guides', guideUpload, adminController.guides.create);
+router.put('/guides/:id', guideUpload, adminController.guides.edit);
+router.delete('/guides/:id', adminController.guides.delete);
 
 router.put('/set-last-update', adminController.logBook.setNewDate);
 router.put('/update-logbook', adminController.logBook.setInfo);

@@ -1,0 +1,589 @@
+[
+  {
+    "name": "Aerobec Autohaler",
+    "spacer": false,
+    "guides": [
+      "breath-actuated"
+    ]
+  },
+  {
+    "name": "Aerobec",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Aerobec",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Aforbe",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Aforbe",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Airomir Autohaler",
+    "spacer": false,
+    "guides": [
+      "breath-actuated"
+    ]
+  },
+  {
+    "name": "Airomir",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Airomir",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-children",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Alvesco",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Alvesco",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Anoro Ellipta",
+    "spacer": false,
+    "guides": [
+      "ellipta"
+    ]
+  },
+  {
+    "name": "Atectura Breezhaler",
+    "spacer": false,
+    "guides": [
+      "breezhaler"
+    ]
+  },
+  {
+    "name": "Beclomet Easyhaler",
+    "spacer": false,
+    "guides": [
+      "easyhaler"
+    ]
+  },
+  {
+    "name": "Befoair",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Befoair",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Bevespi Aerosphere",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Bevespi Aerosphere",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Bricanyl Turbuhaler",
+    "spacer": false,
+    "guides": [
+      "turbuhaler"
+    ]
+  },
+  {
+    "name": "Budesonid Easyhaler",
+    "spacer": false,
+    "guides": [
+      "easyhaler"
+    ]
+  },
+  {
+    "name": "Bufomix Easyhaler",
+    "spacer": false,
+    "guides": [
+      "easyhaler"
+    ]
+  },
+  {
+    "name": "Buventol Easyhaler",
+    "spacer": false,
+    "guides": [
+      "easyhaler"
+    ]
+  },
+  {
+    "name": "Ciclesonide Glenmark",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Ciclesonide Glenmark",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Ciclesonide Orifarm",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Ciclesonide Orifarm",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Ciclesonide Sandoz",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Ciclesonide Sandoz",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Duaklir Genuair",
+    "spacer": false,
+    "guides": [
+      "genuair"
+    ]
+  },
+  {
+    "name": "Eklira Genuair",
+    "spacer": false,
+    "guides": [
+      "genuair"
+    ]
+  },
+  {
+    "name": "Enerzair Breezhaler",
+    "spacer": false,
+    "guides": [
+      "breezhaler"
+    ]
+  },
+  {
+    "name": "Flixotide Diskus",
+    "spacer": false,
+    "guides": [
+      "diskus"
+    ]
+  },
+  {
+    "name": "Flixotide Evohaler",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Flixotide Evohaler",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-children",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Flutiform",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Flutiform",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Formoterol Easyhaler",
+    "spacer": false,
+    "guides": [
+      "easyhaler"
+    ]
+  },
+  {
+    "name": "Fortibec",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Fortibec",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer"
+    ]
+  },
+  {
+    "name": "Incruse Ellipta",
+    "spacer": false,
+    "guides": [
+      "ellipta"
+    ]
+  },
+  {
+    "name": "Innovair Nexthaler",
+    "spacer": false,
+    "guides": [
+      "nexthaler"
+    ]
+  },
+  {
+    "name": "Innovair",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Innovair",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Inspiolto Respimat",
+    "spacer": false,
+    "guides": [
+      "smi"
+    ]
+  },
+  {
+    "name": "Inspiolto Respimat",
+    "spacer": true,
+    "guides": [
+      "smi-spacer",
+      "smi-mask"
+    ]
+  },
+  {
+    "name": "Onbrez Breezhaler",
+    "spacer": false,
+    "guides": [
+      "breezhaler"
+    ]
+  },
+  {
+    "name": "Oxis Turbuhaler",
+    "spacer": false,
+    "guides": [
+      "turbuhaler"
+    ]
+  },
+  {
+    "name": "Pulmicort Turbuhaler",
+    "spacer": false,
+    "guides": [
+      "turbuhaler"
+    ]
+  },
+  {
+    "name": "Relvar Ellipta",
+    "spacer": false,
+    "guides": [
+      "ellipta"
+    ]
+  },
+  {
+    "name": "Salflumix Easyhaler",
+    "spacer": false,
+    "guides": [
+      "easyhaler"
+    ]
+  },
+  {
+    "name": "Salmeterol Orifarm",
+    "spacer": false,
+    "guides": [
+      "diskus"
+    ]
+  },
+  {
+    "name": "Salmeterol/Fluticason Orion",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Salmeterol/Fluticason Orion",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Salmex",
+    "spacer": false,
+    "guides": [
+      "diskus"
+    ]
+  },
+  {
+    "name": "Seebri Breezhaler",
+    "spacer": false,
+    "guides": [
+      "breezhaler"
+    ]
+  },
+  {
+    "name": "Seretide Diskus",
+    "spacer": false,
+    "guides": [
+      "diskus"
+    ]
+  },
+  {
+    "name": "Seretide Evohaler",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Seretide Evohaler",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Serevent Diskus",
+    "spacer": false,
+    "guides": [
+      "diskus"
+    ]
+  },
+  {
+    "name": "Serkep",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Serkep",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Spiriva",
+    "spacer": false,
+    "guides": [
+      "handihaler"
+    ]
+  },
+  {
+    "name": "Spiriva Respimat",
+    "spacer": false,
+    "guides": [
+      "smi"
+    ]
+  },
+  {
+    "name": "Spiriva Respimat",
+    "spacer": true,
+    "guides": [
+      "smi-spacer"
+    ],
+    "note": "Word list gives a Finnish spacer guide name with a Swedish mask guide name, so that guide is left for the client to set."
+  },
+  {
+    "name": "Striverdi Respimat",
+    "spacer": false,
+    "guides": [
+      "smi"
+    ]
+  },
+  {
+    "name": "Striverdi Respimat",
+    "spacer": true,
+    "guides": [
+      "smi-spacer"
+    ],
+    "note": "Word list gives a Finnish spacer guide name with a Swedish mask guide name, so that guide is left for the client to set."
+  },
+  {
+    "name": "Symbicort Turbuhaler",
+    "spacer": false,
+    "guides": [
+      "turbuhaler"
+    ]
+  },
+  {
+    "name": "Symbicort",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Symbicort",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Tiogiva",
+    "spacer": false,
+    "guides": [
+      "handihaler"
+    ]
+  },
+  {
+    "name": "Tiotropium Stada",
+    "spacer": false,
+    "guides": [
+      "tiotropium-stada"
+    ]
+  },
+  {
+    "name": "Trelegy Ellipta",
+    "spacer": false,
+    "guides": [
+      "ellipta"
+    ]
+  },
+  {
+    "name": "Trimbow Nexthaler",
+    "spacer": false,
+    "guides": [
+      "nexthaler"
+    ]
+  },
+  {
+    "name": "Trimbow",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Trimbow",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ],
+    "skip": true,
+    "note": "Word list says 'Trimbow Nexhaler + tilanjatke'; Trimbow Nexthaler is a powder inhaler, so this probably means Trimbow + tilanjatke. Left for the client to confirm and set."
+  },
+  {
+    "name": "Trixeo Aerosphere",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Trixeo Aerosphere",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-adults"
+    ]
+  },
+  {
+    "name": "Ultibro Breezhaler",
+    "spacer": false,
+    "guides": [
+      "breezhaler"
+    ]
+  },
+  {
+    "name": "Ventoline Diskus",
+    "spacer": false,
+    "guides": [
+      "diskus"
+    ]
+  },
+  {
+    "name": "Ventoline Evohaler",
+    "spacer": false,
+    "guides": [
+      "pmdi"
+    ]
+  },
+  {
+    "name": "Ventoline Evohaler",
+    "spacer": true,
+    "guides": [
+      "pmdi-spacer",
+      "pmdi-mask-children",
+      "pmdi-mask-adults"
+    ]
+  }
+]

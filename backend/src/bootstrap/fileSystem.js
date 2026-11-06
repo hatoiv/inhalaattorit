@@ -5,7 +5,7 @@ const DATA_FOLDER = path.join(__dirname, "../../data");
 
 const initFolders = async () => {
     const dirs = [
-        "uploads", "uploads/full", "uploads/thumb", "uploads/tmp", "db", "admindata"
+        "uploads", "uploads/full", "uploads/thumb", "uploads/tmp", "db", "admindata", "guides"
     ];
 
     await fs.mkdir(DATA_FOLDER, { recursive: true })

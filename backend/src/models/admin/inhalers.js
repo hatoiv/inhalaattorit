@@ -1,5 +1,6 @@
 const db = require('../../db/database');
 const uploads = require('../../controllers/admin/uploads')
+const guidesModel = require('./guides');
 
 const stmtRemoveDesc = db.prepare(
     "DELETE FROM medicine_translation " +
@@ -84,6 +85,9 @@ class inhalers {
         if (itemdata.colors) {
             insertColor(medicine_id, itemdata.colors);
         }
+        if (Array.isArray(itemdata.guides)) {
+            guidesModel.setForMedicine(medicine_id, itemdata.guides);
+        }
 
         // print for testing
         console.log("Added row (id:", medicine_id, ")");
@@ -119,6 +123,12 @@ class inhalers {
 
         if ("colors" in updates && Object.keys(updates.colors).length > 0) {
             insertColor(id, updates.colors);
+            updated = true;
+        }
+
+        // unlike the relations above, an empty array is allowed so all guides can be removed
+        if (Array.isArray(updates.guides)) {
+            guidesModel.setForMedicine(id, updates.guides);
             updated = true;
         }
 

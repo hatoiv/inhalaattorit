@@ -1,4 +1,5 @@
 const db = require("../db/database"); 
+const guidesModel = require("./admin/guides");
 
 const getAllInhalers = (lang) => {
     const query = 'SELECT m.* FROM medicine m';
@@ -50,6 +51,9 @@ const getAllInhalers = (lang) => {
         `).all(med.id, lang);
         
         med.links = med.links ? JSON.parse(med.links) : null;
+
+        // url is null when the guide has no PDF in this language
+        med.guides = guidesModel.getForMedicine(med.id, lang);
     });
     
     return medicines;
