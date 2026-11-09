@@ -54,18 +54,60 @@ export function getSearchName(inputElement) {
   return normalizeSearchName(raw);
 }
 
+// words that only join search terms, e.g. "beklometasoni ja formoteroli"
+const joinWords = new Set(["ja", "och", "and", "+", "&"]);
+
 /**
- * Filters inhalers by name
+ * Checks if an inhaler matches the search text. The whole text matching the name is enough.
+ * Otherwise every word must be found in the name or in an active ingredient, so
+ * "beklometasoni formoteroli" finds only the products that contain both and nothing else.
+ * @param {*} item The inhaler object
+ * @param {*} name The search text
+ * @returns true if the inhaler matches
+ */
+function matchesSearch(item, name) {
+  const search = name.toLowerCase();
+  const itemName = item.name.toLowerCase();
+  if (itemName.includes(search)) return true;
+
+  const words = search
+    .split(/[\s,;/]+/)
+    .filter((word) => word && !joinWords.has(word));
+  if (words.length === 0) return false;
+
+  const ingredients = (item.active_ingredients || []).map((ai) =>
+    (ai.name || "").toLowerCase(),
+  );
+  const allWordsFound = words.every(
+    (word) =>
+      itemName.includes(word) ||
+      ingredients.some((ingredient) => ingredient.includes(word)),
+  );
+  if (!allWordsFound) return false;
+
+  // with two or more ingredients searched, the product must have exactly those ingredients
+  // (client's request), so "beklometasoni formoteroli" doesn't show products with a third one
+  const ingredientWords = words.filter((word) =>
+    ingredients.some((ingredient) => ingredient.includes(word)),
+  );
+  if (ingredientWords.length < 2) return true;
+  return ingredients.every((ingredient) =>
+    ingredientWords.some((word) => ingredient.includes(word)),
+  );
+}
+
+/**
+ * Filters inhalers by name or active ingredients
  * @param {*} data JSON data containing inhalers
- * @param {*} name The search name to filter by
- * @returns A set of IDs for inhalers matching the name
+ * @param {*} name The search text to filter by
+ * @returns A set of IDs for inhalers matching the search
  */
 export function getNameFilteredIds(data, name) {
   if (!name) return toIdSet(data);
 
   const idSet = new Set();
   for (const item of data) {
-    if (item.name.toLowerCase().includes(name.toLowerCase())) {
+    if (matchesSearch(item, name)) {
       idSet.add(item.id.toString());
     }
   }

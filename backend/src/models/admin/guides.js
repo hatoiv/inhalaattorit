@@ -33,7 +33,7 @@ const getAll = () => {
 // guides of one medicine in one language as [{id, name, url}]
 const getForMedicine = (medicine_id, language) => {
     return db.prepare(`
-        SELECT g.id, gt.name, gt.file_version
+        SELECT g.id, g.category, gt.name, gt.file_version
         FROM medicine_guide mg
         JOIN guide g ON g.id = mg.guide_id
         LEFT JOIN guide_translation gt ON gt.guide_id = g.id AND gt.language = ?
@@ -41,6 +41,7 @@ const getForMedicine = (medicine_id, language) => {
         ORDER BY gt.name
     `).all(language, medicine_id).map(row => ({
         id: row.id,
+        category: row.category,
         name: row.name || "",
         url: row.file_version ? guideUrl(row.id, language, row.file_version) : null
     }));

@@ -27,8 +27,15 @@ export async function getGuides() {
     }
 }
 
+// position of a category on the usage page, guides without a category go last
+function categoryOrder(category) {
+    const index = guideCategories.findIndex(c => c.key === category);
+    return index === -1 ? guideCategories.length : index;
+}
+
 // builds a list of guide buttons, or null when none of the guides has a PDF in this language
-// guides: [{name, url}]
+// guides: [{name, url, category?}], ordered like the usage page groups and then by name
+// (e.g. inhaler with spacer before inhaler with spacer and mask)
 export function buildGuideButtons(guides, lang) {
     const withFile = guides.filter(g => g.url);
     if (withFile.length === 0) return null;
@@ -44,7 +51,7 @@ export function buildGuideButtons(guides, lang) {
     const buttons = document.createElement("div");
     buttons.classList.add("detail-action-buttons");
     withFile
-        .sort((a, b) => a.name.localeCompare(b.name, lang))
+        .sort((a, b) => categoryOrder(a.category) - categoryOrder(b.category) || a.name.localeCompare(b.name, lang))
         .forEach(guide => {
             const link = document.createElement("a");
             link.href = guide.url;

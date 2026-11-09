@@ -57,8 +57,8 @@ describe("guides", () => {
         const fi = getAllInhalers("fi").find(m => m.id === medId);
         const sv = getAllInhalers("sv").find(m => m.id === medId);
 
-        expect(fi.guides).to.deep.equal([{ id: guideId, name: "Ohje public", url: null }]);
-        expect(sv.guides).to.deep.equal([{ id: guideId, name: "Anvisning public", url: `/guides/${guideId}-sv.pdf?v=5` }]);
+        expect(fi.guides).to.deep.equal([{ id: guideId, category: "dpi", name: "Ohje public", url: null }]);
+        expect(sv.guides).to.deep.equal([{ id: guideId, category: "dpi", name: "Anvisning public", url: `/guides/${guideId}-sv.pdf?v=5` }]);
     });
 
     it("should replace guides on edit and allow removing all of them", () => {

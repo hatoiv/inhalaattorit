@@ -57,7 +57,7 @@ var sv = {
     "results.heading": "Inhalatorer",
     "privacy.link": "Dataskyddsbeskrivning",
     "accessibility.link": "Tillgänglighetsutlåtande",
-    "search.placeholder": "Sök efter namn...",
+    "search.placeholder": "Sök efter namn eller aktiv substans...",
     "velocity-coordination.hint": "Obs! Markera båda alternativen",
     "date.tracker": "Utbudet av inhalatorer på marknaden har uppdaterats: {date}",
     "logbook.prompt": "Se de senaste ändringarna",
