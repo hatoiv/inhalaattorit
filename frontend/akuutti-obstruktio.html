@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="icon" type="image/x-icon" href="/img/icon.png">
+        <title>Akuutin obstruktion hoito lapsilla — Inhalaattorit.fi</title>
+        <script>document.documentElement.lang = localStorage.getItem("lang") || "fi";</script>
+    </head>
+
+    <body>
+        <header>
+            <div class="header-content">
+                <h1 data-i18n="site.title"><a href="/">Inhalaattorit.fi</a></h1>
+                <button class="nav-toggle" aria-label="Avaa valikko">&#9776;</button>
+                <nav>
+                    <ul>
+                        <li><a href="/" class="nav-link" data-i18n="nav.front-page">Etusivu</a></li>
+                        <li><a href="tietoa.html" class="nav-link" data-i18n="nav.about">Tietoa sivustosta</a></li>
+                        <li><a href="palaute.html" class="nav-link" data-i18n="nav.feedback">Ota yhteyttä</a></li>
+                        <li><a href="inhalaattorien-kaytto.html" class="nav-link" data-i18n="nav.inhaler-use">Inhalaattorien käyttö</a></li>
+                        <li><a href="akuutti-obstruktio.html" class="nav-link" data-i18n="nav.obstruction">Akuutin obstruktion hoito lapsilla</a></li>
+                        <li><a href="admin.html" class="nav-link" data-i18n="nav.admin">Admin</a></li>
+                        <li><button class="lang-toggle" aria-label="FI - Vaihda kieli">FI</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- Finnish -->
+            <article class="page-content obstruction-page lang-fi">
+                <h2>Akuutin obstruktion hoito lapsilla</h2>
+                <p>Tulostettava A4-ohje lasten päivystykseen lääkäreille ja hoitajille. Ohje on tarkoitettu tulostettavaksi yksikön seinälle.</p>
+
+                <div class="obstruction-actions">
+                    <a class="btn-primary" href="files/akuutti-obstruktio-lapset-A4.pdf" download>Lataa A4-ohje (PDF)</a>
+                    <a class="btn-secondary" href="files/akuutti-obstruktio-lapset-A4.pdf" target="_blank" rel="noopener">Avaa PDF tulostettavaksi</a>
+                </div>
+
+                <figure class="obstruction-poster">
+                    <a href="files/akuutti-obstruktio-lapset-A4.pdf" target="_blank" rel="noopener">
+                        <img src="img/akuutti-obstruktio-A4.jpg" width="1200" height="1697" alt="Esikatselu A4-ohjeesta: Lapsen akuutti obstruktio: salbutamoli aina tilanjatkeella. Avaa ohje PDF-tiedostona.">
+                    </a>
+                    <figcaption>Esikatselu. Tulosta ohje PDF-tiedostosta, jotta tulostuslaatu on paras mahdollinen.</figcaption>
+                </figure>
+            </article>
+
+            <!-- Swedish -->
+            <article class="page-content obstruction-page lang-sv">
+                <h2>Behandling av akut obstruktion hos barn</h2>
+                <p>Utskrivbar A4-anvisning för läkare och skötare på barnjouren. Anvisningen är avsedd att skrivas ut och sättas upp på enhetens vägg.</p>
+                <p>Anvisningen finns för närvarande endast på finska.</p>
+
+                <div class="obstruction-actions">
+                    <a class="btn-primary" href="files/akuutti-obstruktio-lapset-A4.pdf" download>Ladda ner A4-anvisningen (PDF, på finska)</a>
+                    <a class="btn-secondary" href="files/akuutti-obstruktio-lapset-A4.pdf" target="_blank" rel="noopener">Öppna PDF för utskrift</a>
+                </div>
+
+                <figure class="obstruction-poster">
+                    <a href="files/akuutti-obstruktio-lapset-A4.pdf" target="_blank" rel="noopener">
+                        <img src="img/akuutti-obstruktio-A4.jpg" width="1200" height="1697" loading="lazy" alt="Förhandsvisning av A4-anvisningen (på finska): Lapsen akuutti obstruktio: salbutamoli aina tilanjatkeella. Öppna anvisningen som PDF-fil.">
+                    </a>
+                    <figcaption>Förhandsvisning. Skriv ut anvisningen från PDF-filen för bästa utskriftskvalitet.</figcaption>
+                </figure>
+            </article>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                &copy; <span id="current-year"></span> Inhalaattorit.fi |
+                <a href="tietosuoja.html" data-i18n="privacy.link">Tietosuojaseloste</a> |
+                <a href="saavutettavuus.html" data-i18n="accessibility.link">Saavutettavuusseloste</a>
+            </p>
+        </footer>
+        <script src="./js/navigation.js"></script>
+        <script type="module" src="./js/lang.js"></script>
+        <script type="module" src="./js/privacy-banner.js"></script>
+    </body>
+</html>

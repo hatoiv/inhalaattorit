@@ -1849,3 +1849,202 @@ footer {
 .guide-form .management-form-row {
     margin-top: 0.8rem;
 }
+
+/* Visually hidden text for screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Front page promotion banner (printable obstruction guide) */
+.promo-banner {
+    grid-column: 1 / -1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: #eef6f4;
+    border: 1px solid #b9dcd4;
+    border-left: 6px solid #1f7a68;
+    border-radius: 10px;
+    padding: 0.9rem 3rem 0.9rem 1.2rem;
+}
+
+.promo-banner__thumb {
+    flex: 0 0 auto;
+    line-height: 0;
+}
+
+.promo-banner__thumb img {
+    width: 56px;
+    height: auto;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+    background: #fff;
+}
+
+.promo-banner__text {
+    flex: 1;
+    min-width: 0;
+}
+
+.promo-banner__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1f7a68;
+    margin-bottom: 0.15rem;
+}
+
+.promo-banner h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.2rem;
+}
+
+.promo-banner__desc {
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.promo-banner__actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.promo-banner__actions .btn-primary {
+    flex: 0 0 auto;
+}
+
+.promo-banner__more {
+    color: #2c3e50;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-underline-offset: 2px;
+}
+
+.promo-banner__close {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: none;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: #2c3e50;
+    cursor: pointer;
+}
+
+.promo-banner__close:hover {
+    background: rgba(44, 62, 80, 0.08);
+}
+
+/* while the banner is shown it takes row 1 and the search moves down a row */
+@media (min-width: 769px) {
+    .search-main.has-promo {
+        grid-template-rows: auto auto 1fr;
+    }
+
+    .search-main.has-promo .search-filter,
+    .search-main.has-promo .results {
+        grid-row: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .promo-banner {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        padding: 0.9rem 2.6rem 0.9rem 1rem;
+    }
+
+    .promo-banner__text {
+        flex: 1 1 0;
+    }
+
+    .promo-banner__actions {
+        flex: 1 1 100%;
+    }
+
+    .promo-banner__actions .btn-primary {
+        width: auto;
+        flex: 1;
+    }
+}
+
+/* Obstruction guide page */
+.obstruction-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin: 1.2rem 0 1.5rem;
+}
+
+.obstruction-actions .btn-primary,
+.obstruction-actions .btn-secondary {
+    flex: 0 0 auto;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+}
+
+.page-content .obstruction-actions a.btn-primary {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    display: inline-block;
+    border: 2px solid #2c3e50;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.page-content .obstruction-actions a.btn-secondary {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.page-content .obstruction-actions a.btn-secondary:hover {
+    background: #eef2f6;
+}
+
+.obstruction-poster {
+    max-width: 640px;
+}
+
+.obstruction-poster img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #d5dde5;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.obstruction-poster figcaption {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.6rem;
+}
+
+@media (max-width: 768px) {
+    .obstruction-actions .btn-primary,
+    .obstruction-actions .btn-secondary {
+        flex: 1 1 100%;
+    }
+}

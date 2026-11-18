@@ -13,6 +13,7 @@ var sv = {
     "nav.about": "Om denna webbplats",
     "nav.feedback": "Kontakt",
     "nav.inhaler-use": "Användning av inhalatorer",
+    "nav.obstruction": "Behandling av akut obstruktion hos barn",
     "nav.admin": "Admin",
     "nav.lang-label": "SV - Byt språk",
     "site.title": "Inhalaattorit.fi",

@@ -25,6 +25,7 @@
                         <li><a href="tietoa.html" class="nav-link" data-i18n="nav.about">Tietoa sivustosta</a></li>
                         <li><a href="palaute.html" class="nav-link" data-i18n="nav.feedback">Ota yhteyttä</a></li>
                         <li><a href="inhalaattorien-kaytto.html" class="nav-link" data-i18n="nav.inhaler-use">Inhalaattorien käyttö</a></li>
+                        <li><a href="akuutti-obstruktio.html" class="nav-link" data-i18n="nav.obstruction">Akuutin obstruktion hoito lapsilla</a></li>
                         <li><a href="admin.html" class="nav-link" data-i18n="nav.admin">Admin</a></li>
                         <li><button class="lang-toggle" aria-label="FI - Vaihda kieli">FI</button></li>
                     </ul>
@@ -180,6 +181,42 @@
 
         <!-- Inhaler search -->
         <main class="search-main">
+            <!-- Promotion banner for the printable obstruction guide. Shown until dismissed (js/promo-banner.js). -->
+            <section id="promo-banner" class="promo-banner" aria-labelledby="promo-banner-heading" hidden>
+                <a href="akuutti-obstruktio.html" class="promo-banner__thumb" tabindex="-1" aria-hidden="true">
+                    <img src="img/akuutti-obstruktio-A4-thumb.jpg" width="240" height="339" alt="">
+                </a>
+                <div class="promo-banner__text">
+                    <p class="promo-banner__eyebrow">
+                        <span class="lang-fi">Uusi tulostettava ohje</span>
+                        <span class="lang-sv">Ny utskrivbar anvisning</span>
+                    </p>
+                    <h2 id="promo-banner-heading">
+                        <span class="lang-fi">Akuutin obstruktion hoito lapsilla</span>
+                        <span class="lang-sv">Behandling av akut obstruktion hos barn</span>
+                    </h2>
+                    <p class="promo-banner__desc">
+                        <span class="lang-fi">A4-ohje lasten päivystykseen lääkäreille ja hoitajille. Tulosta yksikön seinälle.</span>
+                        <span class="lang-sv">A4-anvisning för läkare och skötare på barnjouren (på finska). Skriv ut och sätt upp på enhetens vägg.</span>
+                    </p>
+                </div>
+                <div class="promo-banner__actions">
+                    <a class="btn-primary" href="files/akuutti-obstruktio-lapset-A4.pdf" download>
+                        <span class="lang-fi">Lataa A4-ohje (PDF)</span>
+                        <span class="lang-sv">Ladda ner (PDF)</span>
+                    </a>
+                    <a class="promo-banner__more" href="akuutti-obstruktio.html">
+                        <span class="lang-fi">Lue lisää</span>
+                        <span class="lang-sv">Läs mer</span>
+                    </a>
+                </div>
+                <button type="button" class="promo-banner__close" id="promo-banner-close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="visually-hidden lang-fi">Sulje ilmoitus</span>
+                    <span class="visually-hidden lang-sv">Stäng meddelandet</span>
+                </button>
+            </section>
+
             <!-- Name search -->
             <section id="search-name-section" class="search-name">
                 <h2 id="search-name-heading" data-i18n="search.heading">Hae lääke / inhalaattori nimellä</h2>
@@ -281,6 +318,7 @@
         <script type="module" src="./js/guide.js"></script>
         <script type="module" src="./js/main.js"></script>
         <script type="module" src="./js/privacy-banner.js"></script>
+        <script type="module" src="./js/promo-banner.js"></script>
         <script data-goatcounter="https://tilastot.inhalaattorit.fi/count"
         async src="//tilastot.inhalaattorit.fi/count.js"></script>
     </body>
